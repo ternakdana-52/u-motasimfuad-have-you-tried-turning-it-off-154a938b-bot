@@ -41,6 +41,8 @@ def check_line(line):
         return "leading or trailing whitespace"
     if "\n" in line or "\r" in line:
         return "more than one line"
+    if any(ord(ch) < 0x20 for ch in line):
+        return "control characters in line"
     if len(line) > MAX_CHARS:
         return f"{len(line)} characters, over the 199 cap"
     try:
